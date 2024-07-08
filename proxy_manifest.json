@@ -1,0 +1,51 @@
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "{hashed_name}",
+    "labels": {
+      "app": "{hashed_name}",
+      "config_id": "{config_id}"
+    }
+  },
+  "spec": {
+    "containers": [
+      {
+        "name": "{hashed_name}",
+        "image": "ghcr.io/hcavarsan/kftray-server:latest",
+        "env": [
+          {
+            "name": "LOCAL_PORT",
+            "value": "{local_port}"
+          },
+          {
+            "name": "REMOTE_PORT",
+            "value": "{remote_port}"
+          },
+          {
+            "name": "REMOTE_ADDRESS",
+            "value": "{remote_address}"
+          },
+          {
+            "name": "PROXY_TYPE",
+            "value": "{protocol}"
+          },
+          {
+            "name": "RUST_LOG",
+            "value": "DEBUG"
+          }
+        ],
+        "resources": {
+          "limits": {
+            "cpu": "100m",
+            "memory": "200Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "100Mi"
+          }
+        }
+      }
+    ]
+  }
+}
